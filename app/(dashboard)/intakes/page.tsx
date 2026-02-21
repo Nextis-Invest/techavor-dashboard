@@ -31,10 +31,12 @@ export default async function IntakesPage() {
                 <TableHead>Date</TableHead>
                 <TableHead>Client</TableHead>
                 <TableHead>Email</TableHead>
+                <TableHead>SIREN</TableHead>
                 <TableHead>Plan</TableHead>
                 <TableHead>Niche</TableHead>
                 <TableHead>Description</TableHead>
                 <TableHead>Statut</TableHead>
+                <TableHead>Facture</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -49,6 +51,7 @@ export default async function IntakesPage() {
                       : `${intake.firstName} ${intake.lastName}`}
                   </TableCell>
                   <TableCell>{intake.email}</TableCell>
+                  <TableCell>{intake.siren ?? "—"}</TableCell>
                   <TableCell>{intake.planName ?? "-"}</TableCell>
                   <TableCell className="text-sm">{intake.niche ?? "-"}</TableCell>
                   <TableCell className="text-sm text-muted-foreground max-w-[200px] truncate">
@@ -64,12 +67,23 @@ export default async function IntakesPage() {
                       {intake.status === "PAID" ? "Paye" : "En attente"}
                     </Badge>
                   </TableCell>
+                  <TableCell>
+                    {intake.status === "PAID" ? (
+                      <a
+                        href={"https://techavor.com/api/invoice/" + intake.id}
+                        target="_blank"
+                        className="text-primary hover:underline text-xs"
+                      >
+                        Télécharger
+                      </a>
+                    ) : "—"}
+                  </TableCell>
                 </TableRow>
               ))}
               {intakes.length === 0 && (
                 <TableRow>
                   <TableCell
-                    colSpan={7}
+                    colSpan={9}
                     className="text-center text-muted-foreground py-8"
                   >
                     Aucun projet pour linstant.

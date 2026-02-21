@@ -76,6 +76,27 @@ export default async function MyProjectPage() {
         </Card>
       </div>
 
+      {intake.status === "PAID" && (
+        <Card className="border-green-500/20 bg-green-500/5">
+          <CardContent className="flex items-center justify-between p-6">
+            <div>
+              <p className="font-semibold">Facture disponible</p>
+              <p className="text-sm text-muted-foreground">
+                {intake.invoiceNumber ? `N° ${intake.invoiceNumber}` : "Votre facture Techavor"}
+              </p>
+            </div>
+            <a
+              href={`https://techavor.com/api/invoice/${intake.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              📄 Télécharger la facture
+            </a>
+          </CardContent>
+        </Card>
+      )}
+
       {intake.projectDescription && (
         <Card>
           <CardHeader>

@@ -730,6 +730,12 @@ model ClientIntake {
   stripeSessionId    String?      @unique @map("stripe_session_id")
   status             IntakeStatus @default(PENDING)
 
+  siren          String?
+  siret          String?
+  companyAddress String?  @map("company_address")
+  legalForm      String?  @map("legal_form")
+  invoiceNumber  String?  @unique @map("invoice_number")
+
   @@index([email])
   @@index([status])
   @@map("client_intakes")

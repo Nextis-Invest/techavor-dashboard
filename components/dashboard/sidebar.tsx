@@ -16,6 +16,7 @@ import {
   FolderTree,
   Boxes,
   User,
+  FolderOpen,
 } from "lucide-react"
 
 import {
@@ -93,6 +94,11 @@ const navigationItems: NavItem[] = [
     title: "Coupons",
     url: "/coupons",
     icon: Tag,
+  },
+  {
+    title: "Projets",
+    url: "/intakes",
+    icon: FolderOpen,
   },
 ]
 

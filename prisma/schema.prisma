@@ -704,6 +704,37 @@ model Article {
   @@map("articles")
 }
 
+// ==================== CLIENT INTAKES ====================
+
+enum IntakeStatus {
+  PENDING
+  PAID
+}
+
+model ClientIntake {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  isCompany          Boolean      @default(false) @map("is_company")
+  companyName        String?      @map("company_name")
+  firstName          String       @map("first_name")
+  lastName           String       @map("last_name")
+  email              String
+  phone              String?
+  linkedin           String?
+  planName           String?      @map("plan_name")
+  currentWebsite     String?      @map("current_website")
+  niche              String?
+  projectDescription String?      @map("project_description")
+  stripeSessionId    String?      @unique @map("stripe_session_id")
+  status             IntakeStatus @default(PENDING)
+
+  @@index([email])
+  @@index([status])
+  @@map("client_intakes")
+}
+
 // ==================== GEMINI AI CONFIGURATION ====================
 
 enum GeminiModel {

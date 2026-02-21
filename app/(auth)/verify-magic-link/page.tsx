@@ -10,7 +10,7 @@ function VerifyMagicLinkContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const email = searchParams.get("email")
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard"
+  const callbackUrl = searchParams.get("callbackUrl") || "/my-project"
 
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading")
   const [message, setMessage] = useState("Connexion en cours...")

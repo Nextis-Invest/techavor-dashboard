@@ -48,7 +48,7 @@ export function Logo({ size = "md", className }: LogoProps) {
         alt="Store Logo"
         width={imageSizes[size].width}
         height={imageSizes[size].height}
-        className="object-contain logo-monochrome"
+        className="object-contain"
         onError={() => {
           console.error("Failed to load logo from:", logoSrc)
           setImageError(true)

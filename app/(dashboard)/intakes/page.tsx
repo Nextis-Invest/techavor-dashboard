@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import Link from "next/link"
 
 export const dynamic = "force-dynamic"
 
@@ -37,6 +38,7 @@ export default async function IntakesPage() {
                 <TableHead>Description</TableHead>
                 <TableHead>Statut</TableHead>
                 <TableHead>Facture</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -78,12 +80,17 @@ export default async function IntakesPage() {
                       </a>
                     ) : "—"}
                   </TableCell>
+                  <TableCell>
+                    <Link href={`/intakes/${intake.id}`} className="text-primary hover:underline text-xs font-medium">
+                      Ouvrir →
+                    </Link>
+                  </TableCell>
                 </TableRow>
               ))}
               {intakes.length === 0 && (
                 <TableRow>
                   <TableCell
-                    colSpan={9}
+                    colSpan={10}
                     className="text-center text-muted-foreground py-8"
                   >
                     Aucun projet pour linstant.

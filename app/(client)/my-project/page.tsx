@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth/session"
 import { prisma } from "@/lib/prisma"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ProjectChat } from "@/components/messaging/ProjectChat"
 
 export const dynamic = "force-dynamic"
 
@@ -153,6 +154,17 @@ export default async function MyProjectPage() {
           )}
         </CardContent>
       </Card>
+
+      <div>
+        <h2 className="text-xl font-semibold mb-4">💬 Messages</h2>
+        <ProjectChat
+          intakeId={intake.id}
+          currentUserEmail={user.email!}
+          currentUserName={intake.firstName}
+          senderType="CLIENT"
+          placeholder="Posez vos questions à votre chef de projet..."
+        />
+      </div>
 
       <div className="text-center py-4">
         <p className="text-sm text-muted-foreground">

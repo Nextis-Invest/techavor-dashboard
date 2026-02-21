@@ -41,6 +41,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { Logo } from "@/components/logo"
+import { UnreadBadge } from "@/components/messaging/UnreadBadge"
 
 interface NavItem {
   title: string
@@ -189,6 +190,7 @@ export function DashboardSidebar({ user, ...props }: DashboardSidebarProps) {
                     <Link href={item.url}>
                       <Icon className="size-4 opacity-70" />
                       <span>{item.title}</span>
+                      {item.url === "/intakes" && <UnreadBadge />}
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

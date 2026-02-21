@@ -741,6 +741,28 @@ model ClientIntake {
   @@map("client_intakes")
 }
 
+// ==================== MESSAGING ====================
+
+enum SenderType {
+  ADMIN
+  CLIENT
+}
+
+model ProjectMessage {
+  id          String     @id @default(cuid())
+  createdAt   DateTime   @default(now()) @map("created_at")
+  content     String
+  senderType  SenderType @map("sender_type")
+  senderName  String?    @map("sender_name")
+  senderEmail String     @map("sender_email")
+  intakeId    String     @map("intake_id")
+  readAt      DateTime?  @map("read_at")
+
+  @@index([intakeId])
+  @@index([createdAt])
+  @@map("project_messages")
+}
+
 // ==================== GEMINI AI CONFIGURATION ====================
 
 enum GeminiModel {

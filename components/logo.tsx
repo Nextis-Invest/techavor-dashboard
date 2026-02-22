@@ -11,7 +11,7 @@ interface StoreSettings {
   storeLogo: string | null
 }
 
-const DEFAULT_LOGO = "/default-logo.svg"
+const DEFAULT_LOGO = "/techavor-logo.svg"
 
 export function Logo({ size = "md", className }: LogoProps) {
   const [settings, setSettings] = useState<StoreSettings | null>(null)

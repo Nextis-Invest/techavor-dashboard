@@ -64,9 +64,15 @@ export default async function IntakesPage() {
                   </TableCell>
                   <TableCell>
                     <Badge
-                      variant={intake.status === "PAID" ? "default" : "secondary"}
+                      variant={
+                        intake.status === "PAID" ? "default"
+                        : intake.status === "DRAFT" ? "outline"
+                        : "secondary"
+                      }
                     >
-                      {intake.status === "PAID" ? "Paye" : "En attente"}
+                      {intake.status === "PAID" ? "Payé"
+                        : intake.status === "DRAFT" ? "Brouillon"
+                        : "En attente"}
                     </Badge>
                   </TableCell>
                   <TableCell>

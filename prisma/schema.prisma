@@ -707,6 +707,7 @@ model Article {
 // ==================== CLIENT INTAKES ====================
 
 enum IntakeStatus {
+  DRAFT
   PENDING
   PAID
 }

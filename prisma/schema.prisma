@@ -742,6 +742,92 @@ model ClientIntake {
   @@map("client_intakes")
 }
 
+// ==================== SWISSPADELPRO LEADS ====================
+
+enum LeadProjectType {
+  CONSTRUCTION
+  MAINTENANCE
+}
+
+enum LeadCourtType {
+  INDOOR
+  OUTDOOR
+  SEMI_COVERED
+}
+
+enum LeadPersonType {
+  PARTICULIER
+  PROFESSIONNEL
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  PROPOSAL
+  WON
+  LOST
+}
+
+enum LeadSite {
+  SPP_FR
+  SPP_MA
+  SPP_COM
+  SPP_CH
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Source
+  site   LeadSite @default(SPP_FR)
+  status LeadStatus @default(NEW)
+
+  // Project details
+  projectType LeadProjectType @map("project_type")
+  numCourts   Int?            @map("num_courts")
+  courtType   LeadCourtType?  @map("court_type")
+  options     String[]        @default([])
+
+  // Person type
+  personType LeadPersonType @default(PARTICULIER) @map("person_type")
+
+  // Company info (for professionals)
+  companyName    String? @map("company_name")
+  siret          String?
+  siren          String?
+  companyAddress String? @map("company_address")
+  companyCity    String? @map("company_city")
+  companyPostcode String? @map("company_postcode")
+  dirigeant      String?
+  country        String? @default("FR")
+
+  // Project address
+  projectAddress  String? @map("project_address")
+  projectCity     String? @map("project_city")
+  projectPostcode String? @map("project_postcode")
+  sameAsCompany   Boolean @default(false) @map("same_as_company")
+
+  // Contact info
+  name    String?
+  email   String
+  phone   String?
+  message String?
+
+  // Tracking
+  utmSource   String? @map("utm_source")
+  utmMedium   String? @map("utm_medium")
+  utmCampaign String? @map("utm_campaign")
+
+  @@index([email])
+  @@index([site])
+  @@index([status])
+  @@index([createdAt])
+  @@map("leads")
+}
+
 // ==================== MESSAGING ====================
 
 enum SenderType {

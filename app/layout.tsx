@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google"
 import { Toaster } from "sonner"
 import "./globals.css"
+import { UmamiAnalytics } from "./umami-analytics"
 
 const geist = Geist({ subsets: ["latin"] })
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" })
@@ -20,6 +21,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${geist.className} ${spaceGrotesk.variable} antialiased`}>
+        <UmamiAnalytics />
                 {children}
                 <Toaster position="top-center" richColors />
             </body>
